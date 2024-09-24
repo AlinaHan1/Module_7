@@ -16,14 +16,15 @@ class Shop:
         file.close()
         return str_
     def add(self, *products):
-        self.get_products()
-        for i in products:
-            if self.get_products().find(f'{i.name}') == -1:
-                file = open(self.__file_name, 'a')
-                file.write(f'{i}\n')
-                file.close()
+        current_products = self.get_products()
+        file = open(self.__file_name, 'a')
+        for product in products:
+            if str(product) in current_products:
+                file.write(f'{product}\n')
+
             else:
-                print(f'Продукт {i.name} уже есть в магазине')
+                print(f'Продукт {str(product)} уже есть в магазине')
+        file.close()
 
 
 
